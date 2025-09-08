@@ -15,7 +15,6 @@ from glob import glob
 from typing import Any, Callable, Generator, Iterable, Sequence
 
 import pyarrow as pa
-from cloudpathlib import CloudPath
 from tqdm import tqdm
 
 from ._entities import (
@@ -24,7 +23,7 @@ from ._entities import (
     validate_bids_entities,
 )
 from ._logging import setup_logger
-from ._pathlib import PathT, as_path
+from ._pathlib import CloudPath, PathT, as_path, cloudpathlib_is_available
 
 _BIDS_SUBJECT_DIR_PATTERN = re.compile(r"sub-[a-zA-Z0-9]+")
 
@@ -404,7 +403,7 @@ def _index_bids_subject_dir(
 
     records = []
     # Use built-in rglob methods for CloudPath and py3.13+
-    if isinstance(path, CloudPath):
+    if cloudpathlib_is_available() and isinstance(path, CloudPath):
         paths = map(as_path, path.rglob("sub-*"))
     elif sys.version_info >= (3, 13):
         paths = map(as_path, path.rglob("sub-*", recurse_symlinks=True))
