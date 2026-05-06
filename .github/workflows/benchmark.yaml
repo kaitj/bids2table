@@ -15,7 +15,7 @@ jobs:
           fetch-tags: true
           fetch-depth: 0
       - id: last_tag
-        run: echo ="tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
   benchmark:
     needs: get-tag
