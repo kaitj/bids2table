@@ -34,6 +34,7 @@ s3 = [
 ] # Include s3 to not break backwards compatibility
 
 [dependency-groups]
+benchmark = ["polars>=1.40.1", "pytest>=9.0.3", "pytest-benchmark>=5.2.3"]
 dev = [
     "pandas==3.0.2",
     "pdoc>=16.0.0",
