@@ -140,3 +140,4 @@ pq.write_table(tab, "ds000224.parquet")
 # Convert to a pandas dataframe.
 df = tab.to_pandas(types_mapper=pd.ArrowDtype)
 ```
+
